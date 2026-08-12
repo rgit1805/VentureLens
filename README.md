@@ -155,20 +155,6 @@ PostgreSQL + Redis + Vector Database
 
 ---
 
-## Learning Objectives
-
-This repository is being built as a long-term engineering project to practice:
-
-* Enterprise Software Development
-* Software Architecture
-* Backend Development
-* AI Integration
-* Workflow Automation
-* Scalable System Design
-* Production Engineering
-
----
-
 ## Development Status
 
 Current Phase
