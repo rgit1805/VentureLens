@@ -34,3 +34,32 @@ handle different areas of due diligence:
 
 The findings from these agents are combined to generate a
 comprehensive due diligence report.
+
+## Architecture
+
+AI-VC-Due-Diligence/
+│
+├── docs/
+│   ├── PROJECT_PLAN.md
+│   ├── REQUIREMENTS.md
+│   ├── ARCHITECTURE.md
+│   ├── DATABASE_DESIGN.md
+│   ├── AI_DESIGN.md
+│   ├── DATA_PIPELINE.md
+│   ├── API_DESIGN.md
+│   ├── SECURITY.md
+│   ├── TESTING.md
+│   ├── DEPLOYMENT.md
+│   └── DECISIONS.md
+│
+├── frontend/
+├── backend/
+├── ai/
+├── ml/
+├── data_pipeline/
+├── tests/
+├── infrastructure/
+│
+├── README.md
+├── docker-compose.yml
+└── .gitignore
