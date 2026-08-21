@@ -37,29 +37,51 @@ comprehensive due diligence report.
 
 ## Architecture
 
-AI-VC-Due-Diligence/
-│
-├── docs/
-│   ├── PROJECT_PLAN.md
-│   ├── REQUIREMENTS.md
-│   ├── ARCHITECTURE.md
-│   ├── DATABASE_DESIGN.md
-│   ├── AI_DESIGN.md
-│   ├── DATA_PIPELINE.md
-│   ├── API_DESIGN.md
-│   ├── SECURITY.md
-│   ├── TESTING.md
-│   ├── DEPLOYMENT.md
-│   └── DECISIONS.md
-│
-├── frontend/
-├── backend/
-├── ai/
-├── ml/
-├── data_pipeline/
-├── tests/
-├── infrastructure/
+VentureLens/
 │
 ├── README.md
-├── docker-compose.yml
-└── .gitignore
+│
+├── docs/
+│   │
+│   ├── 01-requirements/
+│   │   ├── project-overview.md
+│   │   ├── functional-requirements.md
+│   │   ├── non-functional-requirements.md
+│   │   ├── user-roles.md
+│   │   └── scope.md
+│   │
+│   ├── 02-architecture/
+│   │   ├── system-architecture.md
+│   │   ├── architecture-diagram.png
+│   │   ├── database-design.md
+│   │   ├── er-diagram.png
+│   │   └── api-design.md
+│   │
+│   ├── 03-ai/
+│   │   ├── ai-architecture.md
+│   │   ├── rag-design.md
+│   │   ├── agent-design.md
+│   │   ├── ml-design.md
+│   │   └── evaluation.md
+│   │
+│   ├── 04-development/
+│   │   ├── development-plan.md
+│   │   ├── milestones.md
+│   │   └── task-board.md
+│   │
+│   ├── 05-testing/
+│   │   ├── test-plan.md
+│   │   └── test-cases.md
+│   │
+│   └── 06-deployment/
+│       ├── deployment.md
+│       └── environment.md
+│
+├── backend/
+├── frontend/
+├── ai/
+├── tests/
+├── docker/
+├── .env.example
+├── .gitignore
+└── requirements.txt
