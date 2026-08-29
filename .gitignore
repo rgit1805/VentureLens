@@ -1,3 +1,5 @@
-\venv
+\.venv
 notes
 requirements.md
+.env
+
