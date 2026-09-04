@@ -1,5 +1,16 @@
-\.venv
-notes
-requirements.md
-.env
+# Python virtual environments
+.venv/
+venv/
+env/
 
+# Python cache / compiled files
+__pycache__/
+*.py[cod]
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Local notes / temporary files
+notes/
