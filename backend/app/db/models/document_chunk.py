@@ -1,6 +1,8 @@
 from datetime import datetime, timezone
 from uuid import UUID, uuid4
 
+from pgvector.sqlalchemy import Vector
+
 from sqlalchemy import DateTime, ForeignKey, Integer, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -32,6 +34,11 @@ class DocumentChunk(Base):
 
     page_number: Mapped[int | None] = mapped_column(
         Integer,
+        nullable=True,
+    )
+
+    embedding: Mapped[list[float] | None] = mapped_column(
+        Vector(768),
         nullable=True,
     )
 
