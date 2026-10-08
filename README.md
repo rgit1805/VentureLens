@@ -129,6 +129,7 @@ VentureLens uses a **modular monolith with supporting services**. The main appli
 | RAG | LangChain |
 | Agent Orchestration | LangGraph |
 | LLM | Gemini API (initial provider) |
+| Embeddings | Gemini Embedding 2, 768 dimensions (V1) |
 | Machine Learning | Scikit-learn + Pandas + NumPy |
 | Document Processing | PyMuPDF + appropriate parsers |
 | Background Jobs | Celery + Redis |
@@ -136,7 +137,7 @@ VentureLens uses a **modular monolith with supporting services**. The main appli
 | Containerization | Docker |
 | Version Control | Git + GitHub |
 
-Exact model, embedding, external-data, and production-cloud choices will be finalized through implementation and evaluation.
+The V1 embedding architecture uses a provider abstraction so the embedding implementation can be replaced or evaluated later without coupling retrieval logic directly to a single provider.
 
 ## Project Documentation
 
@@ -160,7 +161,8 @@ docs/
 ├── decisions/
 │   ├── 001-modular-monolith.md
 │   ├── 002-postgresql-pgvector.md
-│   └── 003-async-processing.md
+│   ├── 003-async-processing.md
+│   └── 004-embedding-model-selection.md
 │
 └── implementation/
     └── 01-project-setup.md
@@ -171,9 +173,9 @@ Documentation is maintained alongside implementation so that requirements, archi
 ## Development Phases
 
 1. **Requirements & Project Definition** — completed
-2. **System Architecture & Technical Design** — in progress / design baseline established
-3. **Backend & Database Foundation**
-4. **Document Processing & RAG**
+2. **System Architecture & Technical Design** — baseline established
+3. **Backend & Database Foundation** — in progress; core foundation implemented
+4. **Document Processing & RAG** — next
 5. **Machine Learning Pipeline**
 6. **Agentic AI & Orchestration**
 7. **Investment Scoring & Risk Intelligence**
@@ -182,6 +184,35 @@ Documentation is maintained alongside implementation so that requirements, archi
 10. **Testing, Evaluation & Deployment**
 
 Implementation follows technical dependencies rather than attempting all features simultaneously.
+
+## Current Development Status
+
+### Completed foundation
+
+- FastAPI application with `/api/v1` versioning
+- Central configuration and environment-based settings
+- Health-check endpoint
+- Application logging
+- Centralized unhandled-exception handling
+- Automated backend tests
+- PostgreSQL connectivity through SQLAlchemy
+- Alembic migration setup and applied migrations
+- Initial relational models for users, startups, financial records, and documents
+- `DocumentChunk` model with `vector(768)` embedding storage
+- PostgreSQL `pgvector` extension enabled
+- ADR-004 accepted for Gemini Embedding 2 at 768 dimensions
+- Embedding provider abstraction
+- Gemini embedding provider implementation with dependency injection for tests
+- Embedding input and dimension validation
+- Mocked Gemini provider tests; **7 backend tests currently pass**
+
+A real Gemini API credential has **not** been configured yet. The provider integration is therefore validated through mocked client tests; live embedding generation will be tested when a real credential is available.
+
+### Current milestone
+
+**Embedding provider foundation complete.**
+
+The next implementation step is the application-level **Embedding Service**, followed by document-chunk embedding generation, vector persistence, similarity retrieval, and the first grounded RAG flow.
 
 ## Requirements Baseline
 
@@ -223,6 +254,6 @@ VentureLens/
 
 ## Status
 
-**Current Milestone:** Documentation and architecture baseline established.
+**Current Milestone:** Backend/database foundation and embedding-provider foundation implemented.
 
-**Next Implementation Milestone:** FastAPI backend foundation, database connectivity, configuration, logging, and health-check endpoint.
+**Next Implementation Milestone:** Embedding Service → document-chunk embedding generation → vector persistence → similarity retrieval → RAG.
