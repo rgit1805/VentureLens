@@ -3,7 +3,7 @@ from uuid import UUID, uuid4
 
 from pgvector.sqlalchemy import Vector
 
-from sqlalchemy import DateTime, ForeignKey, Integer, Text
+from sqlalchemy import DateTime, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base import Base
@@ -11,6 +11,14 @@ from app.db.base import Base
 
 class DocumentChunk(Base):
     __tablename__ = "document_chunks"
+
+    __table_args__ = (
+        UniqueConstraint(
+            "document_id",
+            "chunk_index",
+            name="uq_document_chunks_document_id_chunk_index",
+        ),
+    )
 
     id: Mapped[UUID] = mapped_column(
         primary_key=True,
@@ -34,6 +42,11 @@ class DocumentChunk(Base):
 
     page_number: Mapped[int | None] = mapped_column(
         Integer,
+        nullable=True,
+    )
+
+    source_location: Mapped[str | None] = mapped_column(
+        String(500),
         nullable=True,
     )
 
